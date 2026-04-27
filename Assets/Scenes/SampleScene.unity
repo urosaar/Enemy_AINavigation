@@ -1189,7 +1189,7 @@ GameObject:
   - component: {fileID: 1726059818}
   - component: {fileID: 1726059823}
   - component: {fileID: 1726059826}
-  - component: {fileID: 1726059825}
+  - component: {fileID: 1726059827}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Player
@@ -1314,27 +1314,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 3
---- !u!114 &1726059825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726059817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61c8d25e3caa8c34c9ff340a11e2c1a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyUnreachablePatrol
-  targetSampleRadius: 0.1
-  edgeClearance: 0.25
-  patrolRingRadius: 3
-  patrolSamples: 16
-  patrolPointRefreshRate: 0.25
-  patrolPauseDuration: 0.6
-  offNavMeshRecoveryDistance: 2
-  minRepathDistance: 0.4
-  drawDebugGizmos: 1
 --- !u!114 &1726059826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,12 +1329,29 @@ MonoBehaviour:
   player: {fileID: 1781518589}
   destinationRefreshRate: 0.1
   playerSampleRadius: 1
-  playerMaxSampleRadius: 6
-  playerSampleSteps: 4
+  playerFallbackSampleRadius: 2.5
+  offNavMeshRecoveryDistance: 1.5
   stuckVelocityThreshold: 0.05
   stuckRemainingDistanceThreshold: 0.75
   stuckTimeToRecover: 0.6
-  offNavMeshRecoveryDistance: 1.5
+--- !u!114 &1726059827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726059817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3127f8c4f38bff41a2c567ab7197dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyWander
+  wanderRadius: 12
+  minPickInterval: 1.5
+  maxPickInterval: 4
+  sampleRadius: 2
+  maxAttempts: 20
+  drawDebugGizmos: 1
 --- !u!1 &1768310034
 GameObject:
   m_ObjectHideFlags: 0
