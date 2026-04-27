@@ -19,8 +19,7 @@ public class PlayerController : MonoBehaviour
     public Transform cameraPivot;
 
     [Header("Ground Check")]
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance = 0.2f;
     public LayerMask groundMask;
 
     private CharacterController controller;
@@ -44,7 +43,7 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         inputActions.Player.Move.canceled += ctx => moveInput = Vector2.zero;
 
-        // Jump (with hold detection)
+        // Jump
         inputActions.Player.Jump.performed += ctx =>
         {
             jumpHeld = true;
@@ -62,19 +61,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (groundCheck == null)
-        {
-            groundCheck = transform;
-        }
-
         if (cameraPivot == null)
-        {
             cameraPivot = transform;
-        }
 
-        // Ground check
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        // ✅ Ground check at FEET (fix)
+        Vector3 checkPos = transform.position + Vector3.down * (controller.height / 2f);
+        isGrounded = Physics.CheckSphere(checkPos, groundDistance, groundMask);
 
+        // Stick to ground
         if (isGrounded && velocity.y < 0)
             velocity.y = -2f;
 
@@ -115,13 +109,20 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        // Re-check grounded at the moment of input so jump isn't blocked by a stale Update().
-        bool groundedNow = groundCheck != null &&
-                           Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (groundedNow)
+        if (isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+    }
+
+    // 🔍 Debug sphere (optional but VERY useful)
+    void OnDrawGizmos()
+    {
+        if (controller != null)
+        {
+            Gizmos.color = Color.red;
+            Vector3 checkPos = transform.position + Vector3.down * (controller.height / 2f);
+            Gizmos.DrawWireSphere(checkPos, groundDistance);
         }
     }
 }
