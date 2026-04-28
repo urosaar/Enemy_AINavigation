@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 72420062}
   - component: {fileID: 72420061}
   - component: {fileID: 72420060}
+  - component: {fileID: 72420063}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -231,6 +232,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72420058}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &72420063
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72420058}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &247209246
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +787,7 @@ GameObject:
   - component: {fileID: 410087041}
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
+  - component: {fileID: 410087043}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -886,6 +904,20 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &410087043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410087039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c4fdde579cd89468ba765aa6682d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorLockOnStart
+  lockCursor: 1
+  hideCursor: 1
 --- !u!4 &416137731 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4253165511137440522, guid: fb1d6cdfb32d60740b3773002551b578, type: 3}
@@ -1024,7 +1056,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &428020614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1056,6 +1088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   player: {fileID: 1781518589}
+  chaseSpeed: 5
   destinationRefreshRate: 0.1
   playerSampleRadius: 1
   playerFallbackSampleRadius: 2.5
@@ -1063,6 +1096,8 @@ MonoBehaviour:
   stuckVelocityThreshold: 0.05
   stuckRemainingDistanceThreshold: 0.75
   stuckTimeToRecover: 0.6
+  drawDebugGizmos: 1
+  debugMarkerSize: 0.2
 --- !u!195 &428020616
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1073,7 +1108,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 12
   avoidancePriority: 30
   m_AngularSpeed: 360
@@ -1275,7 +1310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &499135360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,6 +1342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   player: {fileID: 1781518589}
+  chaseSpeed: 5
   destinationRefreshRate: 0.1
   playerSampleRadius: 1
   playerFallbackSampleRadius: 2.5
@@ -1314,6 +1350,8 @@ MonoBehaviour:
   stuckVelocityThreshold: 0.05
   stuckRemainingDistanceThreshold: 0.75
   stuckTimeToRecover: 0.6
+  drawDebugGizmos: 1
+  debugMarkerSize: 0.2
 --- !u!195 &499135362
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1324,7 +1362,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 12
   avoidancePriority: 30
   m_AngularSpeed: 360
@@ -2776,13 +2814,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190880094}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.02321748, y: 0.011249428, z: 0.009751989, w: -0.9996196}
-  m_LocalPosition: {x: 0.08300018, y: 0.59199905, z: 0.06000042}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.08300018, y: 0.59199905, z: 0.060001373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1781518589}
-  m_LocalEulerAnglesHint: {x: 2.648, y: -1.316, z: -1.148}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1190880096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3318,7 +3356,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 12
   avoidancePriority: 30
   m_AngularSpeed: 360
@@ -3343,6 +3381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   player: {fileID: 1781518589}
+  chaseSpeed: 5
   destinationRefreshRate: 0.1
   playerSampleRadius: 1
   playerFallbackSampleRadius: 2.5
@@ -3350,6 +3389,8 @@ MonoBehaviour:
   stuckVelocityThreshold: 0.05
   stuckRemainingDistanceThreshold: 0.75
   stuckTimeToRecover: 0.6
+  drawDebugGizmos: 1
+  debugMarkerSize: 0.2
 --- !u!114 &1726059827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3567,14 +3608,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781518585}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.9, y: 1.277, z: 13.2}
+  m_LocalRotation: {x: -0, y: -0.7520813, z: -0, w: -0.65907043}
+  m_LocalPosition: {x: 23.158817, y: 1.78, z: 32.859104}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1190880095}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -262.458, z: 0}
 --- !u!114 &1781518590
 MonoBehaviour:
   m_ObjectHideFlags: 0
